@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WallCollision : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class WallCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        void onCollisionEnter(Collision other)
-        {
-            Debug.Log("You died!");
-        }
+        
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Collided");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
