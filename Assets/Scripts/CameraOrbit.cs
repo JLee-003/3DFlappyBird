@@ -33,8 +33,8 @@ public class CameraOrbit : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(player.position - transform.position);
         //angle = Mathf.Clamp(angle, Mathf.Deg2Rad * -maxHorizontalAngle, Mathf.Deg2Rad * maxHorizontalAngle);
 
-        rotX += Input.GetAxis("Mouse Y") * mouseSensitivity;
-        rotY += Input.GetAxis("Mouse X") * mouseSensitivity;
+        rotX += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        rotY += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         rotX = Mathf.Clamp(rotX, -maxVerticalAngle, maxVerticalAngle);
         rotY = Mathf.Clamp(rotY, -maxHorizontalAngle, maxHorizontalAngle);
         this.transform.rotation = Quaternion.Euler(-rotX, rotY, 0);

@@ -5,20 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class WallCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision other)
     {
+        FindObjectOfType<AudioManager>().Play("Death");
         Debug.Log("Collided");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
