@@ -9,7 +9,7 @@ public class CameraOrbit : MonoBehaviour
     [SerializeField] private float orbitRadius;
 
     [SerializeField] private float mouseSensitivity = 1f;
-    [SerializeField] private float maxHorizontalAngle = 90f;
+    [SerializeField] private float maxHorizontalAngle = 125f;
     [SerializeField] private float maxVerticalAngle = 75f;
 
     private Vector2 mouseInput;

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScreenManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject player;
     [SerializeField] private Animator pauseAnimator;
 
     private bool isPaused = false;
-    public bool dead = false;
+    bool gameOver = false;
 
     private void Awake()
     {
@@ -41,8 +44,24 @@ public class ScreenManager : MonoBehaviour
         pauseScreen.SetActive(false);
     }
 
+    public void EndGame()
+    {
+        if (gameOver == false)
+        {
+            player.SetActive(false);
+            deathScreen.SetActive(true);
+            gameOver = true;
+            FindObjectOfType<AudioManager>().Play("Death");
+            Debug.Log("Game Over");
+        }
+        
+    }
     public void ReplayGame()
     {
-
+        player.SetActive(true);
+        deathScreen.SetActive(false);
+        gameOver = false;
+        Debug.Log("Restarting Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
