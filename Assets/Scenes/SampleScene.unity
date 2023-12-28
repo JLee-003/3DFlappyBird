@@ -3027,8 +3027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a41a441ffb4e145bd35b4d366aa5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  forwardSpeed: 0
+  speed: 4
+  forwardSpeed: 7
   jumpSpeed: 5
   rb: {fileID: 1311306836}
   mainCamera: {fileID: 1311306838}
