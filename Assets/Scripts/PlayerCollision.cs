@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.collider.tag == "Wall")
+        if (other.gameObject.tag == "Wall")
         {
             FindObjectOfType<ScreenManager>().EndGame();
+        }
+        else if(other.gameObject.tag == "Scoring")
+        {
+            FindObjectOfType<ScreenManager>().IncreaseScore();
         }
     }
 }

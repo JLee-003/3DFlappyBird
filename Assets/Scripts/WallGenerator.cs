@@ -4,33 +4,26 @@ using UnityEngine;
 
 public class WallGenerator : MonoBehaviour
 {
-    public GameObject topWallPrefab;
-    public GameObject bottomWallPrefab;
-    public GameObject sideWallPrefab;
-    public float wallSpawnInterval = 2f;
-    public float minHoleHeight = 2f;
-    public float maxHoleHeight = 4f;
+    public GameObject pipePrefab;
+    public float spawnRate = 1f;
+    public float minY = -4f;
+    public float maxY = 4f;
+    public float minX = -4f;
+    public float maxX = 4f;
 
-    private void Start()
+    private void OnEnable()
     {
-        InvokeRepeating("SpawnWalls", 0f, wallSpawnInterval);
+        InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
     }
 
-    private void SpawnWalls()
+    private void OnDisable()
     {
-        float holeHeight = Random.Range(minHoleHeight, maxHoleHeight);
+        CancelInvoke(nameof(Spawn));
+    }
 
-        // Instantiate top wall
-        GameObject topWall = Instantiate(topWallPrefab, new Vector3(transform.position.x, holeHeight / 2, 0), Quaternion.identity);
-
-        // Instantiate bottom wall
-        GameObject bottomWall = Instantiate(bottomWallPrefab, new Vector3(transform.position.x, -holeHeight / 2, 0), Quaternion.identity);
-
-        // Randomize side wall length
-        float sideWallLength = Random.Range(2f, 5f);
-
-        // Instantiate side walls
-        GameObject leftSideWall = Instantiate(sideWallPrefab, new Vector3(transform.position.x - sideWallLength / 2, 0, holeHeight / 2), Quaternion.Euler(0, 90, 0));
-        GameObject rightSideWall = Instantiate(sideWallPrefab, new Vector3(transform.position.x + sideWallLength / 2, 0, holeHeight / 2), Quaternion.Euler(0, -90, 0));
+    private void Spawn()
+    {
+        GameObject pipes = Instantiate(pipePrefab, transform.position, Quaternion.identity);
+        pipes.transform.position += new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
     }
 }

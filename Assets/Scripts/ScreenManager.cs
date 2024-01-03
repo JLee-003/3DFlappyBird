@@ -10,6 +10,8 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Animator pauseAnimator;
 
+    public int score;
+
     private bool isPaused = false;
     bool gameOver = false;
 
@@ -42,6 +44,12 @@ public class ScreenManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseScreen.SetActive(false);
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+        FindObjectOfType<AudioManager>().Play("Score");
     }
 
     public void EndGame()

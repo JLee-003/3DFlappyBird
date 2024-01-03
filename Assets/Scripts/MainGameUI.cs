@@ -6,15 +6,10 @@ using UnityEngine;
 public class MainGameUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI speedText;
-    [SerializeField] private Rigidbody playerRb;
+    [SerializeField] private ScreenManager screenManager;
 
     private void Update()
-    {
-        Vector3 velocity = playerRb.velocity;
-
-        float speed = velocity.magnitude;
-
-        speedText.text = speed.ToString() + "m/s";
+    {   
+        scoreText.text = "Score:" + screenManager.score.ToString();
     }
 }
